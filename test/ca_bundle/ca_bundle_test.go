@@ -81,7 +81,7 @@ func TestBundle(t *testing.T) {
 			time.Sleep(agentRuntime)
 			log.Printf("Agent has been running for : %s", agentRuntime.String())
 			common.StopAgent()
-			output := common.ReadAgentOutput(agentRuntime)
+			output := common.ReadAgentOutput(agentRuntime + 2*time.Second)
 			containsTarget := outputLogContainsTarget(output)
 			if (parameter.findTarget && !containsTarget) || (!parameter.findTarget && containsTarget) {
 				t.Errorf("Find target is %t contains target is %t", parameter.findTarget, containsTarget)
