@@ -64,7 +64,15 @@ resource "aws_security_group" "ec2_security_group" {
   }
 
   // localstack http and https
+  // the same security group is used for both the localstack instance and the cwagent test instance, so both ingress and
+  // egress rules are needed
   ingress {
+    from_port   = 4566
+    to_port     = 4566
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
     from_port   = 4566
     to_port     = 4566
     protocol    = "TCP"
